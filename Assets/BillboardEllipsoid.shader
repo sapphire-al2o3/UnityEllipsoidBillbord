@@ -1,8 +1,8 @@
 
 Shader "Custom/Particles/Ellipsoid"
 {
-	Properties {
-		_MainTex ("Texture", 2D) = "white" {}
+	Properties
+	{
 		_Color ("Color", Color) = (1,1,1,1)
 		_Width ("Width", Float) = 1.0
 		_Length ("Length", Float) = 2.0
@@ -14,20 +14,17 @@ Shader "Custom/Particles/Ellipsoid"
 		[KeywordEnum(None, Front, Back)] _Cull ("Culling", Int) = 0
 	}
  
-	SubShader {
-		Tags { "Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent" }
+	SubShader
+	{
+		Tags { "Queue"="Transparent" "RenderType"="Transparent" }
 		Blend [_SrcBlend] [_DstBlend]
-		ColorMask RGB
 		ZTest [_ZTest]
 		Cull [_Cull]
 		ZWrite [_ZWrite]
-		Lighting Off Fog { Mode Off }
 		Pass {
 			CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag
-			#pragma fragmentoption ARB_precision_hint_fastest
-			#pragma multi_compile_particles
 
 			#include "UnityCG.cginc"
 
@@ -46,7 +43,7 @@ Shader "Custom/Particles/Ellipsoid"
 			};
 
 			fixed4 _Color;
-			float4 _MainTex_ST;
+			//float4 _MainTex_ST;
 			float _Width;
 			float _Length;
 
@@ -66,21 +63,20 @@ Shader "Custom/Particles/Ellipsoid"
 
 				o.vertex = UnityObjectToClipPos(tv);
 				o.color = _Color;
-				o.texcoord = TRANSFORM_TEX(v.texcoord, _MainTex);
+				o.texcoord = v.texcoord;
 
 				return o;
 			}
 
 			fixed4 frag (v2f i) : COLOR
 			{
-				fixed4 col = tex2D(_MainTex, i.texcoord.xy);
+				fixed4 col = i.color;
 
 				float2 s = (i.texcoord - 0.5) * 2.0;
 				float dist2 = s.x * s.x + s.y * s.y;
-				col.a = (1.0 - dist2) * 0.5;
+				col.a = max((1.0 - dist2) * 0.5, 0.0);
 
-				return col * i.color;
-
+				return col;
 			}
 			ENDCG 
 		}
