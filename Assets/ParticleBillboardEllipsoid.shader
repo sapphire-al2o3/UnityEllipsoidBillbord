@@ -1,5 +1,5 @@
 
-Shader "Custom/Ellipsoid"
+Shader "Custom/Particles/Ellipsoid"
 {
 	Properties
 	{
@@ -33,6 +33,7 @@ Shader "Custom/Ellipsoid"
 			struct appdata_t {
 				float4 vertex : POSITION;
 				float3 normal : NORMAL;
+				fixed4 color : COLOR;
 				float2 texcoord : TEXCOORD0;
 			};
 
@@ -62,7 +63,7 @@ Shader "Custom/Ellipsoid"
 				tv -= v.vertex.xyz * len;
 
 				o.vertex = UnityObjectToClipPos(tv);
-				o.color = _Color;
+				o.color = _Color * v.color;
 				o.texcoord = v.texcoord;
 
 				return o;

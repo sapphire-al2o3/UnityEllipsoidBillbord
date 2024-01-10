@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Custom_Particles_Ellipsoid
-  m_Shader: {fileID: 4800000, guid: 7ef6bcbd7380531488551ce7871bc45e, type: 3}
+  m_Name: Custom_Ellipsoid
+  m_Shader: {fileID: 4800000, guid: c68f8a7343abc8a4f94cbcd83e67a834, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -24,16 +24,20 @@ Material:
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
-    m_TexEnvs: []
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - _Cull: 0
-    - _DstBlend: 10
-    - _Length: 2
+    - _DstBlend: 1
+    - _Length: 8.93
     - _SrcBlend: 5
     - _Width: 1
     - _ZTest: 4
     - _ZWrite: 0
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
