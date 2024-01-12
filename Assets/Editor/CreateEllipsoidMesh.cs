@@ -10,10 +10,10 @@ public class CreateEllipsoidMesh : MonoBehaviour
     {
         Vector3[] vertices = new Vector3[]
         {
-            new Vector3(0, 0, 0),
-            new Vector3(0, 0, 1),
-            new Vector3(0, 0, 0),
-            new Vector3(0, 0, 1)
+            new Vector3(-0.5f, -0.5f, 0),
+            new Vector3(-0.5f,  0.5f, 0),
+            new Vector3( 0.5f, -0.5f, 0),
+            new Vector3( 0.5f,  0.5f, 0)
         };
 
         Vector3[] normals = new Vector3[]
@@ -24,12 +24,12 @@ public class CreateEllipsoidMesh : MonoBehaviour
             new Vector3( 0.5f,  0.5f,  1)
         };
 
-        Vector2[] uvs = new Vector2[]
+        Vector4[] uvs = new Vector4[]
         {
-            new Vector2(0, 0),
-            new Vector2(0, 1),
-            new Vector2(1, 0),
-            new Vector2(1, 1)
+            new Vector4(0, 0, 0, 0),
+            new Vector4(0, 1, 0, 1),
+            new Vector4(1, 0, 0, 0),
+            new Vector4(1, 1, 0, 1)
         };
 
         int[] indices = new int[]
