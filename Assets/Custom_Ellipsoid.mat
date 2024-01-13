@@ -33,7 +33,7 @@ Material:
     m_Floats:
     - _Cull: 0
     - _DstBlend: 1
-    - _Length: 8.93
+    - _Length: 3.72
     - _SrcBlend: 5
     - _Width: 1
     - _ZTest: 4
