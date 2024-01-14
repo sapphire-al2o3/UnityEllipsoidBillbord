@@ -34,7 +34,7 @@ Shader "Custom/Particles/Ellipsoid"
 				float4 vertex : POSITION;
 				float3 normal : NORMAL;
 				fixed4 color : COLOR;
-				float2 texcoord : TEXCOORD0;
+				float4 texcoord : TEXCOORD0;
 			};
 
 			struct v2f {
@@ -52,7 +52,8 @@ Shader "Custom/Particles/Ellipsoid"
 			{
 				v2f o;
 
-				float3 view = ObjSpaceViewDir(v.vertex);
+				float4 pos = float4(0, v.texcoord.zw, 0);
+				float3 view = ObjSpaceViewDir(pos);
 				float width = _Width;
 				float3 forward = float3(0, 0, 1);
 				float3 side = normalize(cross(view, forward) + float3(0.001, 0, 0));
@@ -60,11 +61,11 @@ Shader "Custom/Particles/Ellipsoid"
 				float3 tv = v.normal.x * width * side;
 				tv += v.normal.y * width * vert;
 				float len = _Length - width;
-				tv -= v.vertex.xyz * len;
+				tv -= pos.xyz * len;
 
 				o.vertex = UnityObjectToClipPos(tv);
 				o.color = _Color * v.color;
-				o.texcoord = v.texcoord;
+				o.texcoord = v.texcoord.xy;
 
 				return o;
 			}
